@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Dept from './Department';
+import EmployeeForm from './EmployeeForm';
+
 function App() {
 
     const [employees, setEmployees] = useState([]);
@@ -42,15 +45,22 @@ function App() {
 
     return (
         <div>
+        <EmployeeForm/>
             <h1>Employee List</h1>
             <ul>
                 {employees.map(employee => (
                     <li key={employee.id}>
-                        {employee.name} - {employee.designation} - {employee.department }
+                        {employee.id} - {employee.name} - {employee.designation }
                     </li>
                 ))}
             </ul>
+
+            <Dept />
+
         </div>
+
+        
+
   );
 }
 

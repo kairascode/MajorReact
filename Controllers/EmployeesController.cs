@@ -78,6 +78,7 @@ namespace MajorReact.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
+            Console.Write(employee);
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
