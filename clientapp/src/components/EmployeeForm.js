@@ -1,4 +1,4 @@
-﻿import React, { useState} from 'react';
+﻿import React, { useState, useEffect} from 'react';
 
 
 function EmployeeForm(){
@@ -8,15 +8,14 @@ function EmployeeForm(){
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-
+   
     const handleSubmit = async (event) => {
 
         event.preventDefault();
 
         const empData = { name, designation };
 
-        alert(empData);
-
+       
         try {
             const empsubmit = await fetch('http://localhost:5207/api/Employees', {
                 method: 'POST',
@@ -27,13 +26,14 @@ function EmployeeForm(){
 
                 });
 
+            
             if (!empsubmit.ok) {
                 throw new Error("Failed to submit data");
             }
 
-           // const result = await Response.json();
+            const result = await Response.json();
 
-                setSuccess('Employee added successfully');
+                setSuccess('Employee added successfully',result);
                 setError('');
                 setName('');
                
@@ -43,7 +43,8 @@ function EmployeeForm(){
             setSuccess();
         }
     }
-
+ 
+    
     return (
         <div>
             <h2>Add New Employee</h2>
@@ -72,8 +73,10 @@ function EmployeeForm(){
             {success && <div style={{ color: 'green' }}>{success}</div>}
 
         </div>
+
+        
     
     );
-
+   
 }
 export default EmployeeForm;

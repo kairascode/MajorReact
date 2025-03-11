@@ -1,67 +1,21 @@
-import React, { useState, useEffect } from 'react';
+﻿import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Link } from 'react-router-dom';
+import Dept from './components/Department';
+import EmployeeForm from './components/EmployeeForm';
+import Employee from './components/Employee';
+import NavScrollBar from './Navbar';
 
-import Dept from './Department';
-import EmployeeForm from './EmployeeForm';
 
 function App() {
-
-    const [employees, setEmployees] = useState([]);
-
-    const [loading, setLoading] = useState(true);
-
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const fetchEmployees = async () => {
-            try {
-                const response = await fetch('http://localhost:5207/api/Employees');
-
-                console.log(response);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch Employees");
-                }
-                const data = await response.json();
-
-                setEmployees(data);
-
-            } catch (error) {
-                setError(error.Message);
-            } finally{
-                setLoading(false);
-            }
-        }
-
-        fetchEmployees();
-    }, []);
-
-    if (loading) {
-        return <div>loading...</div>;
-    }
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
+   
+    
     return (
-        <div>
-        <EmployeeForm/>
-            <h1>Employee List</h1>
-            <ul>
-                {employees.map(employee => (
-                    <li key={employee.id}>
-                        {employee.id} - {employee.name} - {employee.designation }
-                    </li>
-                ))}
-            </ul>
+        <NavScrollBar />
+    );
 
-            <Dept />
-
-        </div>
-
-        
-
-  );
+   
 }
 
 export default App;
