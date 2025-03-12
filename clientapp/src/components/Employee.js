@@ -41,7 +41,7 @@ function Employee() {
     return (
         <div>
           
-            <h1>Employee List</h1>
+            <h3>Employee List</h3>
             <ul>
                 {employees.map(employee => (
                     <li key={employee.id}>
